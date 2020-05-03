@@ -2,6 +2,7 @@ import tkinter
 from tkinter import *
 import string
 import re
+import pyttsx3
 import random
 import warnings
 import nltk
@@ -57,7 +58,12 @@ def app():
 
 
         #Bot Response for queries
-
+        #Speech 
+        def Speak(response):
+            engine = pyttsx3.init()
+            engine.say(response)
+            engine.runAndWait()
+            
         def Response(user_response):
             response = ''
             tokens.append(user_response)
@@ -118,6 +124,7 @@ def app():
                 res = botResponse(msg)
                 Chatlog.insert(END, "Bot: " + res + '\n\n')
                 Chatlog.config(state=DISABLED)
+                Speak(response)
 
                 base.after(1000, lambda: base.destroy())
 
@@ -129,6 +136,7 @@ def app():
                 res = botResponse(msg)
                 Chatlog.insert(END, "Bot: " + res + '\n\n')
                 Chatlog.config(state=DISABLED)
+                Speak(response)
 
 
 
